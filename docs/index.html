@@ -44,11 +44,57 @@
       </article>
     </section>
 
+    <section class="tasks" aria-labelledby="tasks-title">
+      <div class="tasks__header">
+        <p class="eyebrow">Első lépések</p>
+        <h2 id="tasks-title">Fejlesztés apró, gyors feladatokra bontva</h2>
+        <p class="muted">Kezdőknek készült lista, ami végigvezet az első működő verzióig.</p>
+      </div>
+      <div class="tasks__grid">
+        <article class="task">
+          <p class="task__label">1. struktúra</p>
+          <h3>Adatlap váz</h3>
+          <p>Adj egy alap kártyát az albérlet adataihoz (kerület, ár, méret). Később jöhetnek a fotók és az elérhetőség.</p>
+          <ul>
+            <li>Hozz létre egy <code>&lt;section id="ajanlatok"&gt;</code> blokkot.</li>
+            <li>Készíts 2-3 minta kártyát statikus adatokkal.</li>
+          </ul>
+        </article>
+        <article class="task">
+          <p class="task__label">2. keresés</p>
+          <h3>Szűrés egyszerűen</h3>
+          <p>Illessz be egy minimális űrlapot, ami csak a felületen szűr (pl. kerület vagy maximum ár alapján).</p>
+          <ul>
+            <li><code>input type="number"</code> a felső árhatárhoz.</li>
+            <li><code>select</code> mező a kerületekhez.</li>
+          </ul>
+        </article>
+        <article class="task">
+          <p class="task__label">3. hitelesség</p>
+          <h3>Képek és profil</h3>
+          <p>Adj képet és rövid leírást a tulajdonos/szobatárs profilhoz, plusz egy „Kapcsolat” gombot (linkelhet e-mailre).</p>
+          <ul>
+            <li>Használj helykitöltő képet (<code>https://picsum.photos</code>).</li>
+            <li>Adj rövid bio-t, hogy ki lakik ott most.</li>
+          </ul>
+        </article>
+        <article class="task">
+          <p class="task__label">4. publikálás</p>
+          <h3>GitHub Pages vagy Netlify</h3>
+          <p>Készíts deployt: GitHub Pages esetén a <code>/site</code> mappát állítsd be forrásnak, Netlify-hoz pedig csak húzd be a repo-t.</p>
+          <ul>
+            <li>Állíts be egyedi címet (pl. <code>budapest-roomie.netlify.app</code>).</li>
+            <li>Kapcsold be az űrlapok feldolgozását, ha Netlify-t választasz.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
     <section id="inditas" class="steps">
       <h2>Indítás helyben (példa: Python mini szerver)</h2>
       <ol>
         <li><strong>Repo klónozása:</strong> <code>git clone https://github.com/&lt;felhasznalo&gt;/codex.git</code></li>
-        <li><strong>Lépj a projektbe:</strong> <code>cd codex/docs</code></li>
+        <li><strong>Lépj a projektbe:</strong> <code>cd codex/site</code></li>
         <li><strong>Indíts kiszolgálót:</strong> <code>python -m http.server 8000</code></li>
         <li><strong>Nyisd meg:</strong> böngészőben <code>http://localhost:8000</code></li>
       </ol>
@@ -60,7 +106,7 @@
       <ol>
         <li>Pushold a repót a GitHub-fiókodba.</li>
         <li>A repo beállításainál válaszd a Pages menüt.</li>
-        <li>Forrásnak állítsd be a <code>main</code> branch-et és a <code>/docs</code> mappát (alapértelmezett GitHub Pages opció).</li>
+        <li>Forrásnak állítsd be a <code>main</code> branch-et és a <code>/site</code> mappát.</li>
         <li>Mentés után pár perc múlva elérhető lesz az oldal egy GitHub URL-en.</li>
       </ol>
     </section>
