@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regisztráció és bejelentkezés | Budapest albérlet- és szobatárs-kereső</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="eyebrow">Fiók létrehozása</p>
+      <h1>Regisztráció és bejelentkezés külön oldalon</h1>
+      <p class="lead">A regisztrált adatok egy böngészőben futó mini adatbázisban tárolódnak, így később ugyanazokkal a hitelesítő adatokkal lehet bejelentkezni.</p>
+      <div class="cta">
+        <a class="button" href="#auth-forms">Ugrás az űrlapokra</a>
+        <a class="button button--ghost" href="index.html">Vissza a kezdőoldalra</a>
+      </div>
+      <p class="hero__note">Demo környezet: az ipari adatbázist helyi tárolás imitálja, hogy a folyamat kézzel is kipróbálható legyen.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="auth-forms" class="auth auth-page__grid">
+      <div class="auth__header">
+        <p class="eyebrow">Hitelesített folyamat</p>
+        <h2>Mentett adatokkal működő regisztráció és login</h2>
+        <p class="muted">Az űrlapok az adatokat egy JSON alapú, böngészőben futó „adatbázisba” mentik (<code>localStorage</code>). Ez biztosítja, hogy ugyanazzal az e-mail és jelszó párossal később is be lehessen lépni – akárcsak egy szerveroldali adatbázis esetén.</p>
+      </div>
+      <div class="auth__grid">
+        <form class="panel" id="register-form" aria-labelledby="regisztracio-title">
+          <div class="panel__header">
+            <h3 id="regisztracio-title">Regisztráció</h3>
+            <span class="badge badge--locked">Adatbázisba mentve</span>
+          </div>
+          <label class="field">
+            <span>Teljes név</span>
+            <input type="text" name="nev" placeholder="Pl. Kovács Anna" required>
+          </label>
+          <label class="field">
+            <span>E-mail cím</span>
+            <input type="email" name="email" placeholder="anna@example.com" required>
+          </label>
+          <label class="field">
+            <span>Szerepkör</span>
+            <select name="szerep">
+              <option>Szobát adok ki</option>
+              <option>Szobát keresek valakihez csatlakozva</option>
+              <option>Szeretnék szobatársat magam mellé</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Jelszó</span>
+            <input type="password" name="jelszo" placeholder="Legalább 8 karakter" minlength="8" required>
+          </label>
+          <button class="button" type="submit">Fiók létrehozása</button>
+          <p class="muted-small">A beküldés után a fiók azonnal mentésre kerül az adatbázisba (helyi tárolás), így az e-mail cím nem regisztrálható újra.</p>
+          <div class="status" id="register-status" role="status" aria-live="polite">Várakozás a beküldésre…</div>
+        </form>
+
+        <form class="panel" id="login-form" aria-labelledby="bejelentkezes-title">
+          <div class="panel__header">
+            <h3 id="bejelentkezes-title">Bejelentkezés</h3>
+            <span class="badge badge--locked">Mentett adatokkal</span>
+          </div>
+          <label class="field">
+            <span>E-mail cím</span>
+            <input type="email" name="email-login" placeholder="anna@example.com" required>
+          </label>
+          <label class="field">
+            <span>Jelszó</span>
+            <input type="password" name="jelszo-login" placeholder="••••••••" minlength="8" required>
+          </label>
+          <div class="field field--inline">
+            <label class="checkbox">
+              <input type="checkbox" name="remember">
+              <span>Maradjak bejelentkezve</span>
+            </label>
+            <a class="link" href="#db">Hogyan működik a tárolás?</a>
+          </div>
+          <button class="button" type="submit">Bejelentkezés</button>
+          <div class="status" id="login-status" role="status" aria-live="polite">Add meg az adatokat, majd kattints a belépésre.</div>
+        </form>
+      </div>
+    </section>
+
+    <section id="db" class="db-card">
+      <div class="db-card__header">
+        <span class="db-badge">Mini adatbázis</span>
+        <p class="muted">Mentett felhasználók és státusz</p>
+      </div>
+      <p class="muted">A demo a böngészőben futó <strong>localStorage</strong>-t használja adatbázisként: ide kerülnek a regisztrált profilok (név, szerepkör, e-mail, jelszó hash). A folyamat ugyanazt a logikát követi, mint egy szerveroldali adatbázis: egyedi e-mail, ellenőrzött jelszó, későbbi belépési lehetőség.</p>
+      <ul class="pill-list">
+        <li>Mentés: <code>roommateAuthUsers</code> kulcson JSON formátumban</li>
+        <li>Hash-elt jelszó mező a tároláshoz</li>
+        <li>Duplikált e-mail cím automatikusan elutasítva</li>
+      </ul>
+      <h3>Mentett fiókok</h3>
+      <p id="db-count" class="muted-small">Még nincs mentett felhasználó.</p>
+      <ul id="db-preview" class="db-preview" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <script>
+    const DB_KEY = 'roommateAuthUsers';
+    const registerForm = document.getElementById('register-form');
+    const loginForm = document.getElementById('login-form');
+    const registerStatus = document.getElementById('register-status');
+    const loginStatus = document.getElementById('login-status');
+    const dbCount = document.getElementById('db-count');
+    const dbPreview = document.getElementById('db-preview');
+
+    const encode = (value) => {
+      try {
+        return btoa(unescape(encodeURIComponent(value)));
+      } catch (_) {
+        return btoa(value);
+      }
+    };
+
+    const loadUsers = () => {
+      const raw = localStorage.getItem(DB_KEY);
+      if (!raw) return [];
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        console.warn('Nem sikerült beolvasni az adatbázist', err);
+        return [];
+      }
+    };
+
+    const saveUsers = (users) => {
+      localStorage.setItem(DB_KEY, JSON.stringify(users));
+    };
+
+    const setStatus = (element, type, message) => {
+      element.textContent = message;
+      element.className = `status status--${type}`;
+    };
+
+    const renderDbPreview = () => {
+      const users = loadUsers();
+      dbPreview.innerHTML = '';
+      if (users.length === 0) {
+        dbCount.textContent = 'Még nincs mentett felhasználó.';
+        return;
+      }
+
+      dbCount.textContent = `${users.length} fiók található az adatbázisban.`;
+      users.slice(-4).reverse().forEach((user) => {
+        const item = document.createElement('li');
+        const left = document.createElement('div');
+        const right = document.createElement('div');
+        left.innerHTML = `<strong>${user.name}</strong> · ${user.role}`;
+        right.className = 'muted-small';
+        right.textContent = `${user.email} · ${new Date(user.createdAt).toLocaleString('hu-HU')}`;
+        item.appendChild(left);
+        item.appendChild(right);
+        dbPreview.appendChild(item);
+      });
+    };
+
+    registerForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(registerForm);
+      const name = (formData.get('nev') || '').toString().trim();
+      const email = (formData.get('email') || '').toString().toLowerCase().trim();
+      const role = (formData.get('szerep') || '').toString();
+      const password = (formData.get('jelszo') || '').toString();
+
+      if (password.length < 8) {
+        setStatus(registerStatus, 'error', 'A jelszónak legalább 8 karakter hosszúnak kell lennie.');
+        return;
+      }
+
+      const users = loadUsers();
+      const emailExists = users.some((user) => user.email === email);
+      if (emailExists) {
+        setStatus(registerStatus, 'error', 'Ezzel az e-mail címmel már létezik fiók az adatbázisban.');
+        return;
+      }
+
+      const newUser = {
+        name,
+        email,
+        role,
+        passwordHash: encode(password),
+        createdAt: new Date().toISOString(),
+      };
+
+      users.push(newUser);
+      saveUsers(users);
+      setStatus(registerStatus, 'success', 'Sikeres regisztráció! Az adatok mentésre kerültek az adatbázisba.');
+      registerForm.reset();
+      renderDbPreview();
+    });
+
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(loginForm);
+      const email = (formData.get('email-login') || '').toString().toLowerCase().trim();
+      const password = (formData.get('jelszo-login') || '').toString();
+
+      const users = loadUsers();
+      const user = users.find((entry) => entry.email === email);
+
+      if (!user) {
+        setStatus(loginStatus, 'error', 'Nem találtunk fiókot ezzel az e-mail címmel. Regisztrálj először!');
+        return;
+      }
+
+      if (user.passwordHash !== encode(password)) {
+        setStatus(loginStatus, 'error', 'Hibás jelszó. Próbáld újra ugyanazzal az e-mail címmel.');
+        return;
+      }
+
+      const remember = formData.get('remember');
+      const rememberText = remember ? 'Bejelentkezve maradsz ezen az eszközön.' : 'Csak erre a munkamenetre szól a belépés.';
+      setStatus(loginStatus, 'success', `Sikeres bejelentkezés, üdv ${user.name}! ${rememberText}`);
+    });
+
+    renderDbPreview();
+  </script>
+</body>
+</html>

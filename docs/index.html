@@ -14,7 +14,7 @@
       <h1>Budapest albérlet- és szobatárs-kereső</h1>
       <p class="lead">Egy letisztult kiindulópont, amit bárki könnyen elindíthat vagy továbbfejleszthet.</p>
       <div class="cta">
-        <a class="button" href="#fiok">Regisztráció / bejelentkezés</a>
+        <a class="button" href="auth.html">Regisztráció / bejelentkezés</a>
         <a class="button button--ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub Pages infó</a>
       </div>
       <p class="hero__note">A szobatárs-keresés csak bejelentkezett felhasználóknak érhető el a Profil oldalon.</p>
@@ -34,7 +34,7 @@
           <li>Dohányzás/állat szabályok</li>
         </ul>
         <div class="persona-actions">
-          <a class="button" href="#fiok">Hozz létre fiókot</a>
+          <a class="button" href="auth.html">Hozz létre fiókot</a>
           <a class="button button--ghost" href="docs/roadmap.md">Roadmap</a>
         </div>
       </article>
@@ -50,69 +50,28 @@
           <li>Rövid bemutatkozás</li>
         </ul>
         <div class="persona-actions">
-          <a class="button" href="#fiok">Jelentkezz be</a>
+          <a class="button" href="auth.html">Jelentkezz be</a>
           <a class="button button--ghost" href="docs/budapest-roommate-finder.md">Részletek</a>
         </div>
       </article>
     </section>
 
-    <section id="fiok" class="auth">
-      <div class="auth__header">
-        <p class="eyebrow">Belépés szükséges</p>
-        <h2>Regisztráció és bejelentkezés</h2>
-        <p class="muted">A szoba- vagy lakótárskeresés kizárólag profilhoz kötve működik. Hozz létre fiókot, majd belépve éred el a zárt funkciókat.</p>
-      </div>
-      <div class="auth__grid">
-        <form class="panel" aria-labelledby="regisztracio-title">
-          <div class="panel__header">
-            <h3 id="regisztracio-title">Gyors regisztráció</h3>
-            <span class="badge badge--locked">Profilhoz kötött</span>
-          </div>
-          <label class="field">
-            <span>Teljes név</span>
-            <input type="text" name="nev" placeholder="Pl. Kovács Anna" required>
-          </label>
-          <label class="field">
-            <span>E-mail cím</span>
-            <input type="email" name="email" placeholder="anna@example.com" required>
-          </label>
-          <label class="field">
-            <span>Szerepkör</span>
-            <select name="szerep">
-              <option>Szobát adok ki</option>
-              <option>Szobát keresek valakihez csatlakozva</option>
-              <option>Szeretnék szobatársat magam mellé</option>
-            </select>
-          </label>
-          <label class="field">
-            <span>Jelszó</span>
-            <input type="password" name="jelszo" placeholder="Legalább 8 karakter" required>
-          </label>
-          <button class="button" type="submit">Fiók létrehozása</button>
-        </form>
-
-        <form class="panel" aria-labelledby="bejelentkezes-title">
-          <div class="panel__header">
-            <h3 id="bejelentkezes-title">Már van fiókod?</h3>
-            <span class="badge badge--locked">Zárt funkció</span>
-          </div>
-          <label class="field">
-            <span>E-mail cím</span>
-            <input type="email" name="email-login" placeholder="anna@example.com" required>
-          </label>
-          <label class="field">
-            <span>Jelszó</span>
-            <input type="password" name="jelszo-login" placeholder="••••••••" required>
-          </label>
-          <div class="field field--inline">
-            <label class="checkbox">
-              <input type="checkbox" name="remember">
-              <span>Maradjak bejelentkezve</span>
-            </label>
-            <a class="link" href="#">Elfelejtett jelszó</a>
-          </div>
-          <button class="button" type="submit">Bejelentkezés</button>
-        </form>
+    <section id="fiok" class="auth-callout">
+      <div class="auth-callout__inner">
+        <div>
+          <p class="eyebrow">Belépés szükséges</p>
+          <h2>Regisztráció és bejelentkezés külön oldalon</h2>
+          <p class="muted">A hiteles folyamat miatt a fiók létrehozása és a bejelentkezés egy külön oldalra került. Itt egy mini adatbázis (helyben futó demo) tárolja a regisztrációk adatait, így később belépésre is felhasználhatók.</p>
+          <ul class="pill-list">
+            <li>Valós adatbázist imitáló helyi tárolás</li>
+            <li>E-mail cím alapú belépés</li>
+            <li>Szerepkör és név mentése</li>
+          </ul>
+        </div>
+        <div class="auth-callout__actions">
+          <a class="button" href="auth.html">Megnyitom az új oldalt</a>
+          <a class="button button--ghost" href="roadmap.md">Roadmap</a>
+        </div>
       </div>
     </section>
 
