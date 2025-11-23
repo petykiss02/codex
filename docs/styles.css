@@ -132,6 +132,73 @@ h1 {
   color: var(--muted);
 }
 
+.tasks {
+  margin-top: 56px;
+  background: #0f172a;
+  color: #e5edff;
+  padding: 32px 24px 36px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.25);
+}
+
+.tasks__header {
+  max-width: 700px;
+}
+
+.tasks h2 {
+  margin: 4px 0 12px;
+  color: #ffffff;
+}
+
+.muted {
+  color: rgba(229, 237, 255, 0.82);
+  margin: 0 0 18px;
+}
+
+.tasks__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.task {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 18px 16px;
+}
+
+.task h3 {
+  margin: 6px 0 10px;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.task p {
+  margin: 0 0 10px;
+}
+
+.task ul {
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(229, 237, 255, 0.9);
+}
+
+.task__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #a5b4fc;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  padding: 6px 10px;
+  border-radius: 999px;
+  margin: 0;
+}
+
 .steps {
   margin-top: 48px;
   background: #e0ebff;
@@ -175,5 +242,8 @@ code {
   .card,
   .steps {
     padding: 20px;
+  }
+  .tasks {
+    padding: 24px 18px 28px;
   }
 }
