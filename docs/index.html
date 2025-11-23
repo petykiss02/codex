@@ -14,9 +14,10 @@
       <h1>Budapest albérlet- és szobatárs-kereső</h1>
       <p class="lead">Egy letisztult kiindulópont, amit bárki könnyen elindíthat vagy továbbfejleszthet.</p>
       <div class="cta">
-        <a class="button" href="#inditas">Indítási lépések</a>
+        <a class="button" href="#fiok">Regisztráció / bejelentkezés</a>
         <a class="button button--ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub Pages infó</a>
       </div>
+      <p class="hero__note">A szobatárs-keresés csak bejelentkezett felhasználóknak érhető el a Profil oldalon.</p>
     </div>
   </header>
 
@@ -33,7 +34,7 @@
           <li>Dohányzás/állat szabályok</li>
         </ul>
         <div class="persona-actions">
-          <a class="button" href="#ajanlatok">Adj fel minta-hirdetést</a>
+          <a class="button" href="#fiok">Hozz létre fiókot</a>
           <a class="button button--ghost" href="docs/roadmap.md">Roadmap</a>
         </div>
       </article>
@@ -49,10 +50,107 @@
           <li>Rövid bemutatkozás</li>
         </ul>
         <div class="persona-actions">
-          <a class="button" href="#ajanlatok">Tölts fel egy keresést</a>
+          <a class="button" href="#fiok">Jelentkezz be</a>
           <a class="button button--ghost" href="docs/budapest-roommate-finder.md">Részletek</a>
         </div>
       </article>
+    </section>
+
+    <section id="fiok" class="auth">
+      <div class="auth__header">
+        <p class="eyebrow">Belépés szükséges</p>
+        <h2>Regisztráció és bejelentkezés</h2>
+        <p class="muted">A szoba- vagy lakótárskeresés kizárólag profilhoz kötve működik. Hozz létre fiókot, majd belépve éred el a zárt funkciókat.</p>
+      </div>
+      <div class="auth__grid">
+        <form class="panel" aria-labelledby="regisztracio-title">
+          <div class="panel__header">
+            <h3 id="regisztracio-title">Gyors regisztráció</h3>
+            <span class="badge badge--locked">Profilhoz kötött</span>
+          </div>
+          <label class="field">
+            <span>Teljes név</span>
+            <input type="text" name="nev" placeholder="Pl. Kovács Anna" required>
+          </label>
+          <label class="field">
+            <span>E-mail cím</span>
+            <input type="email" name="email" placeholder="anna@example.com" required>
+          </label>
+          <label class="field">
+            <span>Szerepkör</span>
+            <select name="szerep">
+              <option>Szobát adok ki</option>
+              <option>Szobát keresek valakihez csatlakozva</option>
+              <option>Szeretnék szobatársat magam mellé</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Jelszó</span>
+            <input type="password" name="jelszo" placeholder="Legalább 8 karakter" required>
+          </label>
+          <button class="button" type="submit">Fiók létrehozása</button>
+        </form>
+
+        <form class="panel" aria-labelledby="bejelentkezes-title">
+          <div class="panel__header">
+            <h3 id="bejelentkezes-title">Már van fiókod?</h3>
+            <span class="badge badge--locked">Zárt funkció</span>
+          </div>
+          <label class="field">
+            <span>E-mail cím</span>
+            <input type="email" name="email-login" placeholder="anna@example.com" required>
+          </label>
+          <label class="field">
+            <span>Jelszó</span>
+            <input type="password" name="jelszo-login" placeholder="••••••••" required>
+          </label>
+          <div class="field field--inline">
+            <label class="checkbox">
+              <input type="checkbox" name="remember">
+              <span>Maradjak bejelentkezve</span>
+            </label>
+            <a class="link" href="#">Elfelejtett jelszó</a>
+          </div>
+          <button class="button" type="submit">Bejelentkezés</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="profil" class="profile">
+      <div class="profile__header">
+        <p class="eyebrow">Zárt terület</p>
+        <h2>Profil oldali keresések</h2>
+        <p class="muted">A „szobatárs keresés magam mellé” és a „csatlakoznék valakihez” űrlapok csak bejelentkezés után érhetők el. A kezdőoldalról eltűntek, hogy minden lépés fiókhoz kötődjön.</p>
+      </div>
+      <div class="profile__grid">
+        <article class="panel panel--soft">
+          <div class="panel__header">
+            <h3>Szobatársat keresek magam mellé</h3>
+            <span class="badge badge--locked">Belépés után</span>
+          </div>
+          <p class="muted">Add meg a lakásod alapadatait, a beköltözés időpontját és a legfontosabb szabályokat. A profilodra mentjük, így később is szerkeszthető.</p>
+          <ul class="profile__list">
+            <li>Kerület, közlekedés és havi díjak</li>
+            <li>Elvárások: dohányzás, állat, vendégek</li>
+            <li>Bemutatkozó blokk és fotógaléria</li>
+          </ul>
+          <button class="button" type="button">Megnyitom a profil űrlapot</button>
+        </article>
+
+        <article class="panel panel--soft">
+          <div class="panel__header">
+            <h3>Csatlakoznék valakihez</h3>
+            <span class="badge badge--locked">Belépés után</span>
+          </div>
+          <p class="muted">Bejelentkezve itt adhatod meg a költözési keretet, preferált kerületeket és a lakótárssal kapcsolatos igényeidet. Csak a profilodon keresztül küldhető be.</p>
+          <ul class="profile__list">
+            <li>Maximális költségkeret és költözési dátum</li>
+            <li>Rövid bemutatkozás és életmód beállítások</li>
+            <li>Értesítések az új ajánlatokról</li>
+          </ul>
+          <button class="button" type="button">Megnyitom a profil űrlapot</button>
+        </article>
+      </div>
     </section>
 
     <section id="ajanlatok" class="listings" aria-labelledby="ajanlatok-title">
