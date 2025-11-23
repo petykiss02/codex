@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budapest albérlet- és szobatárs-kereső | Alap verzió</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="eyebrow">Alap oldal</p>
+      <h1>Budapest albérlet- és szobatárs-kereső</h1>
+      <p class="lead">Egy letisztult kiindulópont, amit bárki könnyen elindíthat vagy továbbfejleszthet.</p>
+      <div class="cta">
+        <a class="button" href="#inditas">Indítási lépések</a>
+        <a class="button button--ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub Pages infó</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card-grid">
+      <article class="card">
+        <h2>Mit tartalmaz?</h2>
+        <ul>
+          <li>Statikus, gyorsan nyitható kezdőoldal.</li>
+          <li>Egyszerű stílusok külön CSS fájlban.</li>
+          <li>Lényegi szövegek magyarul, hogy könnyű legyen folytatni.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Hogyan bővítsd?</h2>
+        <ol>
+          <li>Adj új szekciókat vagy kártyákat a HTML-hez.</li>
+          <li>Finomítsd a <code>styles.css</code>-t saját színekkel.</li>
+          <li>Használj bármilyen statikus vagy dinamikus keretrendszert.</li>
+        </ol>
+      </article>
+      <article class="card">
+        <h2>Miért ilyen alap?</h2>
+        <p>A cél, hogy percek alatt kipróbáld: töltsd le, nyisd meg böngészővel, vagy futtasd egy minimális szerverrel.</p>
+      </article>
+    </section>
+
+    <section id="inditas" class="steps">
+      <h2>Indítás helyben (példa: Python mini szerver)</h2>
+      <ol>
+        <li><strong>Repo klónozása:</strong> <code>git clone https://github.com/&lt;felhasznalo&gt;/codex.git</code></li>
+        <li><strong>Lépj a projektbe:</strong> <code>cd codex/site</code></li>
+        <li><strong>Indíts kiszolgálót:</strong> <code>python -m http.server 8000</code></li>
+        <li><strong>Nyisd meg:</strong> böngészőben <code>http://localhost:8000</code></li>
+      </ol>
+      <p>Python nélkül egyszerűen duplakatt a <code>index.html</code>-re is működik.</p>
+    </section>
+
+    <section class="steps">
+      <h2>GitHub Pages röviden</h2>
+      <ol>
+        <li>Pushold a repót a GitHub-fiókodba.</li>
+        <li>A repo beállításainál válaszd a Pages menüt.</li>
+        <li>Forrásnak állítsd be a <code>main</code> branch-et és a <code>/site</code> mappát.</li>
+        <li>Mentés után pár perc múlva elérhető lesz az oldal egy GitHub URL-en.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Kezdő verzió – szabadon alakítható.</p>
+  </footer>
+</body>
+</html>
