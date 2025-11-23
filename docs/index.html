@@ -21,6 +21,88 @@
   </header>
 
   <main class="container">
+    <section class="personas" id="szerepek">
+      <article class="persona-card">
+        <p class="eyebrow">Ha van lakásod</p>
+        <h2>Szobatársat keresel?</h2>
+        <p class="muted">Mutasd meg a szobát, az elvárásaidat és hogy mikortól költözhet valaki. A cél, hogy hiteles, átlátható hirdetés készüljön.</p>
+        <ul class="pill-list">
+          <li>Kerület + közlekedés</li>
+          <li>Ár és rezsi bontás</li>
+          <li>Fotók, alaprajz</li>
+          <li>Dohányzás/állat szabályok</li>
+        </ul>
+        <div class="persona-actions">
+          <a class="button" href="#ajanlatok">Adj fel minta-hirdetést</a>
+          <a class="button button--ghost" href="docs/roadmap.md">Roadmap</a>
+        </div>
+      </article>
+
+      <article class="persona-card">
+        <p class="eyebrow">Ha szobát keresel</p>
+        <h2>Költöznél valakihez?</h2>
+        <p class="muted">Írd le a keretedet, kedvenc kerületeidet és hogy milyen lakót keresel magad mellé, így célzott ajánlatokat kaphatsz.</p>
+        <ul class="pill-list">
+          <li>Max. bérleti díj + kaució</li>
+          <li>Költözési dátum</li>
+          <li>Preferenciák (állat, dohányzás)</li>
+          <li>Rövid bemutatkozás</li>
+        </ul>
+        <div class="persona-actions">
+          <a class="button" href="#ajanlatok">Tölts fel egy keresést</a>
+          <a class="button button--ghost" href="docs/budapest-roommate-finder.md">Részletek</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="ajanlatok" class="listings" aria-labelledby="ajanlatok-title">
+      <div class="listings__header">
+        <p class="eyebrow">Első lépés</p>
+        <h2 id="ajanlatok-title">Mintalisták a két szerepre</h2>
+        <p class="muted">Statikus kártyák, amik megmutatják, milyen adatokat várunk a hirdetőktől és a szobát keresőktől. Ezeket később dinamikus űrlapok és API-k váltják.</p>
+      </div>
+
+      <div class="listings__grid">
+        <article class="listing-card">
+          <div class="listing-card__top">
+            <span class="badge badge--owner">Lakásom van</span>
+            <p class="meta">11. kerület · Újbuda-központ · 4-es metró 5 perc</p>
+            <h3>Kiadó szoba napfényes lakásban</h3>
+            <p>Két hálószobás, 64 m²-es lakás új gépekkel. Erkély a csendes belső udvarra, dolgozósarok kialakítva.</p>
+          </div>
+          <ul class="listing-card__details">
+            <li><strong>Ár:</strong> 135 000 Ft/hó + ~25 000 Ft rezsi</li>
+            <li><strong>Kaució:</strong> 2 hónap</li>
+            <li><strong>Beköltözés:</strong> szeptember 1.</li>
+            <li><strong>Szabályok:</strong> nemdohányzó, kutyát elfogadok</li>
+          </ul>
+          <div class="listing-card__footer">
+            <span class="pill">3 fotó kötelező</span>
+            <span class="pill">Személyes megtekintés</span>
+          </div>
+        </article>
+
+        <article class="listing-card">
+          <div class="listing-card__top">
+            <span class="badge badge--seeker">Szobát keresek</span>
+            <p class="meta">Preferált kerületek: 9., 11., 13. · max. 180k/hó</p>
+            <h3>Junior fejlesztő költözne ősztől</h3>
+            <p>Home office-ban dolgozom, csendes, nem dohányzó lakótárs vagyok. Heti 2-3-szor főzök, kutyabarát helyet keresek.</p>
+          </div>
+          <ul class="listing-card__details">
+            <li><strong>Költözés:</strong> augusztus vége vagy szeptember eleje</li>
+            <li><strong>Keret:</strong> max. 180 000 Ft/hó mindennel</li>
+            <li><strong>Fontos:</strong> gyors net, külön szoba, csendes este 10 után</li>
+            <li><strong>Plusz:</strong> szívesen segítek takarításban, közös sport</li>
+          </ul>
+          <div class="listing-card__footer">
+            <span class="pill">Előny: 4-6-os villamos közel</span>
+            <span class="pill">Bemutatkozó üzenet sablon</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="card-grid">
       <article class="card">
         <h2>Mit tartalmaz?</h2>
